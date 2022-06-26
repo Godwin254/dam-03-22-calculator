@@ -39,17 +39,14 @@
 
     });
 
-    const clearSingleContent = () => {
-        //clear single element from screen
-        let vals = display.value;
-
-        let displayArr = vals.split('');
-
-        //remove last element in display array
-        displayArr.pop();
-
-        return display.value = displayArr.join('');
-    }
+    /**
+     * Function to clear a single value on the display
+     * split values of display to form an array
+     * use array pop() function to remote last element of display
+     * use join() function to return the array into string again
+     */
+    const clearSingleContent = () => display.value.split('').pop().join('');
+    
 
     /**
      * Method/function to clear all content of the screen/display
@@ -67,5 +64,5 @@
      * return the value to the display
      */
     const compute = () =>  display.value = eval(display.value); 
-    
+
 })();
