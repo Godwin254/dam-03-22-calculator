@@ -71,13 +71,9 @@
                     // -> =
                     //appendNumber(btn.value);
                 }*/
-                if (val === "+" && val === "-" && val === "/" && val === "*") {
-                    chooseOperation(btn.value); //
-                }else if (val === "Del" && val === "CLR" ){
-                    deleteContent();
-                }else{
-                    appendNumber(btn.value);
-                }
+              
+                appendNumber(btn.value, i);
+            
     
             });
         });
@@ -96,8 +92,23 @@
         //clear single element from screen
     }
 
-    const appendNumber = (number) => {
-        display.value += number
+    const appendNumber = (number, i) => {
+        if (!display.value){
+            display.value = "";
+        }else if (i === 3 || i === 7 || i === 11 || i === 14) {
+            chooseOperation(btn.value); //
+        }else if (i === 16 || i === 17) {
+
+            console.log(i)
+            display.value += null;
+            if (i === 17) {
+                deleteContent();
+            }
+
+        }
+            display.value += number
+        
+        
     }
 
     const chooseOperation = (operator) => {
@@ -134,5 +145,6 @@
         //updates result
         let show = compute();
         display.value = show;
+
     }
 })();
