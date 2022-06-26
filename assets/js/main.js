@@ -35,8 +35,6 @@
     
             });
         });
-
-
     });
 
     /**
@@ -47,7 +45,6 @@
      */
     const clearSingleContent = () => display.value.split('').pop().join('');
     
-
     /**
      * Method/function to clear all content of the screen/display
      */
