@@ -16,64 +16,23 @@
                 console.log("clicked");
 
                 let val = btn.value;
-                /*
-                if (i === 0){
-                    // -> 7
-                    appendNumber(parseInt(btn.value));
-                }else if(i === 1){
-                    // -> 8
-                    appendNumber(parseInt(btn.value));
-                }else if(i === 2){
-                    // -> 9
-                    appendNumber(parseInt(btn.value));
-                }else if(i === 3){
-                    // -> +
-                    appendNumber(btn.value);
-                    chooseOperation(btn.value);
-                }else if(i === 4){
-                    // -> 4
-                    appendNumber(parseInt(btn.value));
-                }else if(i === 5){
-                    // -> 5
-                    appendNumber(parseInt(btn.value));
-                }else if(i === 6){
-                    // -> 6
-                    appendNumber(parseInt(btn.value));
-                    chooseOperation(btn.value);
-                }else if (i === 7) {
-                    // -> -
-                    appendNumber(btn.value);
-                    chooseOperation(btn.value);
-                } else if (i === 8) {
-                    // -> 1
-                    appendNumber(parseInt(btn.value));
-                } else if (i === 9) {
-                    // -> 2
-                    appendNumber(parseInt(btn.value));
-                }else if (i === 10) {
-                    // -> 3
-                    appendNumber(parseInt(btn.value));
-                } else if (i === 11) {
-                    // -> *
-                    appendNumber(btn.value);
-                    chooseOperation(btn.value);
-                } else if (i === 12) {
-                    // -> 0
-                    appendNumber(parseInt(btn.value));
-                }else if (i === 13) {
-                    // -> .
-                    appendNumber(btn.value);
-                } else if (i === 14) {
-                    // -> /
-                    appendNumber(btn.value);
-                    chooseOperation(btn.value);
-                } else{
-                    // -> =
-                    //appendNumber(btn.value);
-                }*/
-              
-                appendNumber(btn.value, i);
-            
+               if (i !== 15){
+                   if (i === 16) {
+                       //target delete button
+                       //some code
+                       clearContent()
+                   }else{
+                       if (i === 17) {
+                           //clear button
+                           deleteContent()
+                       }else{
+                           appendNumber(val);
+                       }
+                   }
+                }else{
+                    //if i === 15 (equal button)
+                    compute();
+                }        
     
             });
         });
@@ -90,22 +49,18 @@
 
     const clearContent = () => {
         //clear single element from screen
+        let vals = display.value;
+
+        let displayArr = vals.split('');
+
+        //remove last element in display array
+        displayArr.pop();
+
+        return display.value = displayArr.join('');
     }
 
     const appendNumber = (number, i) => {
-        if (!display.value){
-            display.value = "";
-        }else if (i === 3 || i === 7 || i === 11 || i === 14) {
-            chooseOperation(btn.value); //
-        }else if (i === 16 || i === 17) {
-
-            console.log(i)
-            display.value += null;
-            if (i === 17) {
-                deleteContent();
-            }
-
-        }
+       
             display.value += number
         
         
@@ -131,14 +86,10 @@
         }
     }
 
-    const compute = (sign ) => {
+    const compute = () => {
         //performs arithmetic operation
-        let result = 0;
-        if (sign === "+"){
-
-            result += 1
-        }
-        return result
+        let result = eval(display.value); //using eval function
+        return display.value = result;
     }
 
     const updateDisplay = () => {
