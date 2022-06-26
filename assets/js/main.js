@@ -7,31 +7,30 @@
     window.addEventListener('DOMContentLoaded', () => {
         //debug
         console.log("Calculator loaded!");
-        console.log(display);
-        console.log(btns);
-
         //click listener to all buttons
         [...btns].forEach((btn, i) => {
             btn.addEventListener('click', () => {
                 console.log("clicked");
 
-                let val = btn.value;
+                let val = btn.value; //set button values on a variable val
                if (i !== 15){
                    if (i === 16) {
                        //target delete button
                        //some code
-                       clearContent()
+                       clearSingleContent()
                    }else{
                        if (i === 17) {
                            //clear button
-                           deleteContent()
+                           deleteAllContent()
                        }else{
+                        //if not one of the unique buttons then append value to display
+                        //unique buttons are [equals, delete , clear]
                            appendNumber(val);
                        }
                    }
                 }else{
-                    //if i === 15 (equal button)
-                    compute();
+                    //if i === 15 (target equals button)
+                    compute(); //invoke compute function
                 }        
     
             });
@@ -40,14 +39,7 @@
 
     });
 
-
-    //methods / functions
-    const deleteContent = () => {
-        //clears everything on displaonClick="calcNumbers(b5.value)"
-        display.value = '';
-    }
-
-    const clearContent = () => {
+    const clearSingleContent = () => {
         //clear single element from screen
         let vals = display.value;
 
@@ -59,43 +51,21 @@
         return display.value = displayArr.join('');
     }
 
-    const appendNumber = (number, i) => {
-       
-            display.value += number
-        
-        
-    }
+    /**
+     * Method/function to clear all content of the screen/display
+     */
+    const deleteAllContent = () =>  display.value = '';
 
-    const chooseOperation = (operator) => {
-        //controls what happen when an operation is selected
-        switch(operator){
-            case "+":
-                compute(operator);
-                break;
-            case "-":
-                compute(operator);
-                break;
-            case "*":
-                compute(operator);
-                break;
-            case "/":
-                compute(operator);
-                break;
-            default:
-                console.log("no such operator");
-        }
-    }
+    /**
+     * function/method to append clicked numbers on the display
+     */
+    const appendNumber = number => display.value += number;
 
-    const compute = () => {
-        //performs arithmetic operation
-        let result = eval(display.value); //using eval function
-        return display.value = result;
-    }
-
-    const updateDisplay = () => {
-        //updates result
-        let show = compute();
-        display.value = show;
-
-    }
+    /**
+     * method/function to  Compute arithmetic operation on display
+     * Use eval() function to compute arithmetic represented on string
+     * return the value to the display
+     */
+    const compute = () =>  display.value = eval(display.value); 
+    
 })();
